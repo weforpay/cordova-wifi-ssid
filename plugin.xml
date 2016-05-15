@@ -9,6 +9,23 @@
   <js-module src="www/WiFiSSID.js" name="WiFiSSID">
     <clobbers target="cordova.plugins.WiFiSSID" />
   </js-module>
+<!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="WiFiSSID" >
+                <param name="android-package" value="org.apache.cordova.wifiinfo.WiFiInfo"/>
+            </feature>
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+        </config-file>
+
+
+        <source-file src="src/android/WiFiInfo.java" target-dir="src/org/apache/cordova/wifiinfo" />
+    </platform>  
   <!-- ios -->
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
