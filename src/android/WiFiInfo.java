@@ -52,7 +52,9 @@ public class WiFiInfo extends CordovaPlugin {
 			WifiManager  wm=(WifiManager)this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
 			WifiInfo wi = wm.getConnectionInfo();
 			JSONObject jo = new JSONObject();
-			jo.put("SSID", wi.getSSID());
+			String ssid = wi.getSSID();
+			ssid  = ssid.replaceAll("^\"(.*)\"$", "$1");
+			jo.put("SSID", ssid);
 			jo.put("BSSID",wi.getBSSID());
 			
 			PluginResult pluginResult = new PluginResult(
